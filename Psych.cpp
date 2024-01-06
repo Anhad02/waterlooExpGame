@@ -17,6 +17,7 @@ void Psych::movement(Player &player){
         }
         psych_enemy.setPosition(enemy_speed,200.0+150*sin(enemy_speed/65));
         if(psych_enemy.getGlobalBounds().intersects(player.getPlayer().getGlobalBounds())){
+                previous_state=game_state;
                 game_state=0;
         }
 }
@@ -27,7 +28,7 @@ void Psych::draw(){
 }
 
 void Psych::decrementTimer(){
-    enemy_speed+=0.1;
+    enemy_speed+=0.1*dt;
 }
 
 void Psych::reset(){

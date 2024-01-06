@@ -9,16 +9,18 @@ class Player;
 class Policy71{
     private:
     sf::CircleShape bullet;
-    float bullet_time;
     float enemy_speed;
+    float length;
+    sf::Vector2f direction;
+    sf::Vector2f moved_distance;
 
 
     public:
     Policy71();
     void movement(Player &player);
     void draw();
-    void decrementTimer();
     void reset();
+    void calculateConstants(Player &player);
     };
 
 #endif

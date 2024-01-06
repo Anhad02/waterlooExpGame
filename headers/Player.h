@@ -16,6 +16,7 @@ class Player{
     int getWidth();
     int getLength();
     void movement();
+    sf::Vector2f getPos();
     void draw();
     void reset();
 

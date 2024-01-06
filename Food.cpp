@@ -24,7 +24,7 @@ void Food::foodSpawn(Player &player, Score &score){
                 food.setPosition(screen_length*2,screen_width*2);
                 is_visible_food=false;
             }
-                if(score.getScore()==1){
+                if(score.getScore()==10){
                     game_state=-1;
                 }
                 if(food_timer<=0){
@@ -35,7 +35,7 @@ void Food::foodSpawn(Player &player, Score &score){
 }
 
 void Food::decrementTimer(){
-    food_timer-=0.05;
+    food_timer-=0.05*dt;
 }
 
 void Food::draw(){

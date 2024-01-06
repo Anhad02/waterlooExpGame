@@ -20,11 +20,12 @@ Courses::Courses(){
 void Courses::movement(Player &player){
     for (int i = 0; i < enemies_size; i++)
         {
-            enemies[i].move(enemy_speed[i]);
+            enemies[i].move(enemy_speed[i]*dt);
             if(enemies[i].getPosition().y>=screen_length){
                 enemies[i].setPosition(dist(rd)%(screen_width/enemies_size-player.getWidth()) +(screen_width/enemies_size*i),-80);
             }
             if(enemies[i].getGlobalBounds().intersects(player.getPlayer().getGlobalBounds())){
+                previous_state=game_state;
                 game_state=0;
             }
         }
