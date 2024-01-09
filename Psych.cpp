@@ -8,14 +8,16 @@ Psych::Psych(){
     psych_enemy.setFillColor(sf::Color(128,0,128));
     psych_enemy.setPosition(-800.0,200);
     enemy_speed=-800.0;
+    random_y=0;
     
 }
 
 void Psych::movement(Player &player){
     if(enemy_speed>=screen_width){
             enemy_speed= -screen_width;
+            random_y=(rand()% 3 - 1);
         }
-        psych_enemy.setPosition(enemy_speed,200.0+150*sin(enemy_speed/65));
+        psych_enemy.setPosition(enemy_speed,200.0+150*sin(enemy_speed/65)+100*random_y);
         if(psych_enemy.getGlobalBounds().intersects(player.getPlayer().getGlobalBounds())){
                 previous_state=game_state;
                 game_state=0;
@@ -33,6 +35,7 @@ void Psych::decrementTimer(){
 
 void Psych::reset(){
     psych_enemy.setPosition(-800.0,200);
+    random_y=(rand()% 3 - 1);
     enemy_speed=-800.0;
 }
 

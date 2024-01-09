@@ -6,13 +6,14 @@
 
 class Player{
     private:
-    sf::RectangleShape modal;
+    sf::Sprite modal;
     int player_width;
     int player_length;
+    float animationFrames;
 
     public:
     Player();
-    sf::RectangleShape getPlayer();
+    sf::Sprite getPlayer();
     int getWidth();
     int getLength();
     void movement();

@@ -2,16 +2,19 @@
 #include "./headers/Score.h"
 #include "./headers/Player.h"
 #include "headers/Global.h"
+#include <iostream>
 
 Food::Food(){
-    food=sf::CircleShape(10.0);
-    food.setFillColor(sf::Color::Green);
-    food.setOutlineThickness(4.0);
+    if (!food_texture.loadFromFile("./Textures/Weed.png")) {
+        std::cerr<<"Texture not loaded";
+    }
+    food.setTexture(food_texture);
+    food.setScale(0.04f,0.04f);
     food.setPosition(dist(rd)%(screen_width-100)+50,dist(rd)%(screen_length-100)+50);
     is_visible_food=true;
 }
 
-sf::CircleShape Food::getFood(){
+sf::Sprite Food::getFood(){
     return food;
 }
 

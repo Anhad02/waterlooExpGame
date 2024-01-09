@@ -60,7 +60,7 @@ Title play_again("PLAY AGAIN",400.0);
 
 int main()
 {
-    window.setFramerateLimit(30);
+    window.setFramerateLimit(10);
     LevelHighScore temp={1,0};
     highScores.push_back(temp);
     highScores.push_back(temp);
@@ -80,7 +80,7 @@ int main()
                     break;
                 case sf::Event::MouseButtonPressed:
                     if(game_state==-1){
-                        startGame(event.mouseButton.x, event.mouseButton.y); 
+                        startGame(event.mouseButton.x, event.mouseButton.y);
                     }
                     else if(game_state==0){
                         playAgain(event.mouseButton.x, event.mouseButton.y);
@@ -161,7 +161,6 @@ void gameOver(){
 }
 
 void startGame(int x,int y){
-    resetGame();
     if(lvl1.mouseClicked(x,y)){
         game_state=1;
     }
@@ -174,6 +173,7 @@ void startGame(int x,int y){
     else if(endless.mouseClicked(x,y)){
         game_state=4;
     }
+    resetGame();
 }
 
 void resetGame(){

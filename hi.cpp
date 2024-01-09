@@ -1,16 +1,41 @@
 #include <SFML/Graphics.hpp>
-#include <cmath>
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Move Object Equal Time");
+    // Create a window
+    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Sprite Map Outline Example");
 
-    sf::CircleShape object(20); // Example object (circle)
+    // Load sprite map texture from PNG file
+    sf::Texture spriteMapTexture;
+    if (!spriteMapTexture.loadFromFile("Charactervector.png")) {
+        // Print an error message
+        return -1;
+    }
 
-    sf::Vector2f pointA(100, 100); // Starting point
-    sf::Vector2f pointB(500, 300); // Ending point
+    // Create sprite for the entire sprite map
+    sf::Sprite spriteMap(spriteMapTexture);
 
-    float speed = 7.5f; // Fixed speed of the movement (pixels per second)
+    // Define the region (rectangle) of the sprite map for the specific sprite you want
+    sf::IntRect spriteRect(0, 0, 5, 5); // Adjust the coordinates and dimensions based on your sprite map
 
+    // Set the texture rectangle for the specific sprite
+    spriteMap.setTextureRect(spriteRect);
+
+    // Create an image to store the alpha mask
+    sf::Image alphaMask = spriteMapTexture.copyToImage();
+    alphaMask.createMaskFromColor(sf::Color::Transparent, 0); // Create a mask based on transparency
+
+    // Create a texture from the alpha mask
+    sf::Texture maskTexture;
+    maskTexture.loadFromImage(alphaMask);
+
+    // Create a sprite for the outline using the mask texture
+    sf::Sprite outlineSprite(maskTexture);
+    outlineSprite.setColor(sf::Color::White); // Set the color of the outline
+
+    // Set the position of the outline sprite
+    outlineSprite.setPosition(100.0f, 100.0f); // Adjust the position based on your needs
+
+    // Main loop
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -19,22 +44,13 @@ int main() {
             }
         }
 
-        // Calculate direction from A to B
-        sf::Vector2f direction = pointB - pointA;
-
-        // Normalize the direction (make it a unit vector)
-        float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
-        sf::Vector2f normalizedDirection = direction / length;
-
-        // Calculate the movement based on fixed speed and elapsed time
-        float deltaTime = 1.0f / 60.0f; // Assuming 60 frames per second
-        sf::Vector2f movement = speed * normalizedDirection * deltaTime;
-
-        // Update object position
-        object.move(movement);
-
+        // Clear the window
         window.clear();
-        window.draw(object);
+
+        // Draw only the outline sprite
+        window.draw(outlineSprite);
+
+        // Display the contents of the window
         window.display();
     }
 

@@ -8,13 +8,13 @@ class Score;
 
 class Food{
     private:
-    sf::CircleShape food;
+    sf::Sprite food;
 
     public:
     Food();
     bool is_visible_food=true;
     float food_timer;
-    sf::CircleShape getFood();
+    sf::Sprite getFood();
     void foodSpawn(Player &player,Score &score);
     void decrementTimer();
     void draw();

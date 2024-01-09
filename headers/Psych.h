@@ -10,6 +10,7 @@ class Psych{
     private:
     sf::CircleShape psych_enemy;
     float enemy_speed;
+    int random_y;
 
 
     public:

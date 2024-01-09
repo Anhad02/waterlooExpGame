@@ -8,11 +8,12 @@ class Player;
 
 class Policy71{
     private:
-    sf::CircleShape bullet;
+    sf::Sprite bullet;
     float enemy_speed;
     float length;
     sf::Vector2f direction;
     sf::Vector2f moved_distance;
+    double animationFrames;
 
 
     public:
