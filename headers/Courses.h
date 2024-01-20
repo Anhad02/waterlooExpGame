@@ -2,6 +2,7 @@
 #define COURSES_H
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <vector>
 
 class Player;
@@ -19,6 +20,7 @@ class Courses{
     void movement(Player &player);
     void draw();
     void reset();
+    void death();
     };
 
 #endif

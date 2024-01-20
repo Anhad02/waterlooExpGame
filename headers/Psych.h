@@ -3,12 +3,13 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <iostream>
 
 class Player;
 
 class Psych{
     private:
-    sf::CircleShape psych_enemy;
+    sf::Sprite psych_enemy;
     float enemy_speed;
     int random_y;
 
@@ -17,6 +18,7 @@ class Psych{
     Psych();
     void movement(Player &player);
     void draw();
+    void death();
     void decrementTimer();
     void reset();
     };

@@ -9,6 +9,7 @@ class Player;
 class Policy71{
     private:
     sf::Sprite bullet;
+    sf::Text policy_text;
     float enemy_speed;
     float length;
     sf::Vector2f direction;
@@ -21,6 +22,7 @@ class Policy71{
     void movement(Player &player);
     void draw();
     void reset();
+    void death();
     void calculateConstants(Player &player);
     };
 

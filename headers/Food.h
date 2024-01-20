@@ -6,18 +6,20 @@
 class Player;
 class Score;
 
-class Food{
-    private:
+class Food
+{
+private:
     sf::Sprite food;
 
-    public:
+public:
     Food();
-    bool is_visible_food=true;
+    bool is_visible_food = true;
     float food_timer;
     sf::Sprite getFood();
-    void foodSpawn(Player &player,Score &score);
+    void foodSpawn(Player &player, Score &score);
     void decrementTimer();
     void draw();
+    void setPosition(int x, int y);
     void reset();
 };
 
